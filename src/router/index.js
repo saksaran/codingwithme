@@ -30,7 +30,12 @@ const router = createRouter({
         {
             path: '/:notfound(.*)',
             component: NotFound
-        }
+        },
+        {
+            path: '/commented',
+            name: 'commented',
+            component: CommentedPage,
+        },
     ]
 
 })
