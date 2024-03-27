@@ -5,14 +5,51 @@ import reviewIconCinema from '/image/review-icon/cinema.png'
 import reviewIconChapter from '/image/review-icon/chapter.png'
 import reviewIconWatching from '/image/review-icon/watching.png'
 import reviewIconMoney from '/image/review-icon/money.png'
+import { watch, ref } from 'vue'
 
-const reviewItems = [
-  { icon: reviewIconCamera, value: 84 },
-  { icon: reviewIconCinema, value: 84 },
-  { icon: reviewIconChapter, value: 84 },
-  { icon: reviewIconWatching, value: 84 },
-  { icon: reviewIconMoney, value: 84 },
-]
+const props = defineProps({
+  value1: {
+    default: 0,
+    type: Number,
+  },
+  value2: {
+    default: 0,
+    type: Number,
+  },
+  value3: {
+    default: 0,
+    type: Number,
+  },
+  value4: {
+    default: 0,
+    type: Number,
+  },
+  value5: {
+    default: 0,
+    type: Number,
+  },
+})
+
+const reviewItems = ref([
+  { icon: reviewIconCamera, value: props.value1 },
+  { icon: reviewIconCinema, value: props.value2 },
+  { icon: reviewIconChapter, value: props.value3 },
+  { icon: reviewIconWatching, value: props.value4 },
+  { icon: reviewIconMoney, value: props.value5 },
+])
+
+watch(
+  () => props,
+  (newProps) => {
+    reviewItems.value = [
+      { icon: reviewIconCamera, value: newProps.value1 },
+      { icon: reviewIconCinema, value: newProps.value2 },
+      { icon: reviewIconChapter, value: newProps.value3 },
+      { icon: reviewIconWatching, value: newProps.value4 },
+      { icon: reviewIconMoney, value: newProps.value5 },
+    ]
+  }
+)
 </script>
 
 <template>
@@ -25,7 +62,7 @@ const reviewItems = [
           height="35px"
           class="ml-1 mr-1"
         />
-        84%
+        {{ reviewItems[3].value || 0 }} %
       </div>
     </div>
   </div>
